@@ -31,9 +31,9 @@ def nouvelle_partie(etat_jeu, donnees_joueurs):
     etat_jeu['fin_de_partie'] = False
     while not (etat_jeu['fin'] or etat_jeu['fin_de_partie']):
         coup(etat_jeu, donnees_joueurs)
-        affiche_etat(etat_jeu, donnees_joueurs)
         resultat = gagnant(etat_jeu)
         if resultat:
+            affiche_etat(etat_jeu, donnees_joueurs)
             affiche_gagnant(donnees_joueurs, resultat)
             etat_jeu['fin_de_partie'] = True
 
