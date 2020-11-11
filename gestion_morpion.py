@@ -1,21 +1,16 @@
+from interface_utilisateur_morpion import saisie_coup, decoder_coup
+
 def init_jeu(etat_jeu, donnees_joueurs):
     plateau = [3*[-1] for i in range(3)]
     etat_jeu['plateau'] = plateau
 
-def finir_jeu(etat_jeu, donnees_joueurs):
-    print('fin de jeu')
-
-def decoder_coup(chaine):
-    dictionnaire_lettres = {'A': 0, 'B': 1, 'C': 2}
-    lettre, numero = list(chaine)
-    ligne, colonne = dictionnaire_lettres[lettre], int(numero) - 1
-    return ligne, colonne
+def term_jeu(etat_jeu, donnees_joueurs):
+    pass
 
 def coup(etat_jeu, donnees_joueurs):
     plateau = etat_jeu['plateau']
     joueur_courant = etat_jeu['joueur_courant']
-    coup_saisi = input(donnees_joueurs['noms'][joueur_courant]\
-                       + ' saisissez votre coup :\n')
+    coup_saisi = saisie_coup(etat_jeu, donnees_joueurs)
     if coup_saisi in ('quitter', 'q'):
         etat_jeu['fin'] = True
     else:
