@@ -23,31 +23,21 @@ def jouer_coup(plateau, i, j, joueur):
 
 def gagnant(etat_jeu):
     plateau = etat_jeu['plateau']
-    ## examen des lignes
-    for i in range(3):
-        ligne = [plateau[i][j] for j in range(3)]
-        if ligne == [0, 0, 0]:
-            return (0, 'ligne', i)
-        elif ligne == [1, 1, 1]:
-            return (1, 'ligne', i)
-    ## examen des colonnes
-    for j in range(3):
-        colonne = [plateau[i][j] for i in range(3)]
-        if colonne == [0, 0, 0]:
-            return (0, 'colonne', j)
-        elif ligne == [2, 2, 2]:
-            return (1, 'colonne', j)
-    ## examen de la diagonale descendante, numérotée 0
-    diagonale = [plateau[i][i] for i in range(3)]
-    if diagonale == [0, 0, 0]:
-        return (0, 'diagonale', 0)
-    elif diagonale == [2, 2, 2]:
-        return (1, 'diagonale', 0)
-    ## examen de la diagonale ascendante, numérotée 1
-    diagonale = [plateau[i][2-i] for i in range(3)]
-    if diagonale == [0, 0, 0]:
-        return (0, 'diagonale', 1)
-    elif diagonale == [1, 1, 1]:
-        return (1, 'diagonale', 1)
-    ## si aucun joueur n'a gagné
-    return None
+    contenu_lignes_colonnes_diagonales = \
+        [[plateau[i][j]   for j in range(3)] for i in range(3)] + \
+        [[plateau[i][j]   for i in range(3)] for j in range(3)] + \
+        [[plateau[i][i]   for i in range(3)]] + \
+        [[plateau[i][2-i] for i in range(3)]]
+    ## dictionnaire pour distinguer entre lignes, colonnes et diagonale
+    ## si un élément est en position i dans la liste lignes_colonnes_diagonales
+    ## la valeur du quotient dans la division euclidienne de i par 3 permet de savoir s'il s'agit
+    ## d'une ligne, d'une colonne ou d'une diagonale
+    dict_lig_col_diag = {0: 'ligne', 1: 'colonne', 2: 'diagonale'}
+    gagnant = None
+    for joueur in range(2):
+        test_joueur = [joueur] * 3
+        if test_joueur in contenu_lignes_colonnes_diagonales:
+            indice = contenu_lignes_colonnes_diagonales.index(test_joueur)
+            gagnant = (joueur, dict_lig_col_diag[indice // 3], indice % 3)
+    return gagnant
+
