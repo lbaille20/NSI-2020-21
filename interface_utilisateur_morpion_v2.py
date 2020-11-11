@@ -1,6 +1,7 @@
 def afficher_instructions_utilisateur():
     print('À tout moment, vous pouvez décider de quitter le jeu')
     print('en saisissant le mot "quitter" ou la lettre "q"')
+    print('Vous pouvez saisir les lignes en majuscules ou en minuscules.')
 
 def saisie_nom_joueur(etat_jeu, donnees_joueurs):
     k = etat_jeu['joueur_courant']
@@ -30,7 +31,7 @@ def affiche_etat(etat_jeu, donnees_joueurs):
     symboles_joueurs = donnees_joueurs['symboles']
     symboles_plateau = [' '] + symboles_joueurs
     nlig, ncol = 4, 4
-    noms_lignes, nom_colonnes = ['1', '2', '3'], [' ', 'A', 'B', 'C']
+    noms_lignes, nom_colonnes = ['A', 'B', 'C'], [' ', '1', '2', '3']
     print('-' * (2* ncol + 1))
     for j in range(len(nom_colonnes)):
         print('|' + nom_colonnes[j], end = '')
