@@ -27,9 +27,9 @@ def nouvelle_partie(etat_jeu, donnees_joueurs):
     choix_premier_joueur(etat_jeu, donnees_joueurs)
     affichage_debut_partie(etat_jeu, donnees_joueurs)
     init_jeu(etat_jeu, donnees_joueurs)
-    affiche_etat(etat_jeu, donnees_joueurs)
     etat_jeu['fin_de_partie'] = False
     while not (etat_jeu['fin'] or etat_jeu['fin_de_partie']):
+        affiche_etat(etat_jeu, donnees_joueurs)
         coup(etat_jeu, donnees_joueurs)
         resultat = gagnant(etat_jeu)
         if resultat:
