@@ -12,9 +12,9 @@ def affiche_etat(etat_jeu, donnees_joueurs):
 def affiche_gagnant(donnees_joueurs, resultat):
     joueur_gagnant, trait, numero = resultat
     noms_joueurs = donnees_joueurs['noms']
-    if trait = 'ligne':
+    if trait == 'ligne':
         identifiant = ['A', 'B', 'C'][numero]
-    elif trait = 'colonne':
+    elif trait == 'colonne':
         identifiant = str(numero + 1)
     else:
         identifiant = ['ascendante', 'descendante'][numero]
